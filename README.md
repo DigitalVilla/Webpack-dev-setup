@@ -3,4 +3,4 @@
 ## Instructions
 > $ npm run webpack
 ### Compile, split, and minifiy SASS & JS
-The output files ae located under the /dist/ directory
+The output files are located under the /dist/ folder
