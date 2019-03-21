@@ -1,6 +1,6 @@
 # Webpack  web-dev Setup
 > client-side webpack setup for SASS and ES6
-### Instructions
-you are required to deploy the page n a server-development environment
-i.e live-server
-#### Run webpack to compile SASS and JS
+## Instructions
+> $ npm run webpack
+### Compile, split, and minifiy SASS & JS
+The output files ae located under the /dist/ directory

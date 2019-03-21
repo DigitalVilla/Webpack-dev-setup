@@ -1,7 +1,7 @@
 {
   "name": "webpack-dev",
   "version": "1.0.0",
-  "description": "A webpack set up for Wordpress",
+  "description": "A webpack set up for ES6 & SASS",
   "main": "index.js",
   "scripts": {
     "webpack": "webpack -wd"
@@ -25,9 +25,11 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^3.0.1",
     "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
   }

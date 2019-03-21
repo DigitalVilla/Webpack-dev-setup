@@ -1,7 +1,9 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // Extract CSS
-const extractCSS = new ExtractTextPlugin('style.css');
+const extractCSS = new ExtractTextPlugin('bundle.min.css');
 
 
 module.exports = (env, options) => {
@@ -10,8 +12,8 @@ module.exports = (env, options) => {
     devtool: isDevMode ? 'source-map' : false,
     entry: ['babel-polyfill', './js/index.js'],
     output: {
-      path: path.resolve(__dirname, './'),
-      filename: 'bundle.js'
+      path: path.resolve(__dirname, './dist'),
+      filename: 'bundle.min.js'
     },
     module: {
       rules: [{
@@ -20,9 +22,21 @@ module.exports = (env, options) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [ 'env', 'stage-2']
+              presets: ['env', 'stage-2']
             }
           }
+        },
+        {
+          test: /\.css$/,
+          use: extractCSS.extract([
+            // 'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: isDevMode
+              }
+            }
+          ])
         },
         {
           test: /\.scss$/,
@@ -72,7 +86,19 @@ module.exports = (env, options) => {
       ]
     },
     plugins: [
-        extractCSS
+      extractCSS,
+      new UglifyJsPlugin({
+        include: /\.(sass|css|js)$/,
+        extractComments: true,
+      }),
+      new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.(sass|css)$/,
+        cssProcessorOptions: {
+          discardComments: {
+            removeAll: true
+          }
+        }
+      })
     ]
   }
 };

@@ -1,6 +1,5 @@
-import test from './slider/base.js'
+import {print} from './test';
 import style from "../sass/main.scss";
 
 
-test("it is working");
-console.log("test");
+print("SASS & ES6 Webpack setup by Digital Villa");
